@@ -69,3 +69,5 @@ Figura 1: Documentação interativa API Histórias
 
 
 **Obs: Para realizar os testes da API basta ir até o repositorio raiz e executar o comando `pytest`**
+
+**Obs 2: Para corrigir a ponderada, adicionar um arquivo .env e solicitar as informações para Luiz Fernando Covas**
