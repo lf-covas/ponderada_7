@@ -15,7 +15,7 @@ Obs: Utilizado um banco de dados MySQL
 ### python-dotenv
 Este guia fornece instruções para instalar e usar a biblioteca `python-dotenv` em seu projeto Python. O `python-dotenv` permite carregar variáveis de ambiente de um arquivo `.env`.
 
-## Instalação do python-dotenv
+#### Instalação do python-dotenv
 
 Siga estas etapas para instalar o `python-dotenv`:
 
@@ -26,7 +26,7 @@ Siga estas etapas para instalar o `python-dotenv`:
 ### SQLAlchemy 
 Este guia fornece instruções para instalar o SQLAlchemy em seu ambiente de desenvolvimento. SQLAlchemy é uma biblioteca Python poderosa para trabalhar com bancos de dados relacionais.
 
-## Pré-requisitos
+#### Pré-requisitos
 
 Antes de começar, verifique se você atende aos seguintes pré-requisitos:
 
@@ -47,7 +47,7 @@ Isso instalará o SQLAlchemy e suas dependências.
 ### FastAPI
 Este guia fornece instruções para instalar o FastAPI em seu ambiente de desenvolvimento. O FastAPI é um framework web moderno para criar APIs em Python de forma rápida e fácil.
 
-## Instalação
+#### Instalação
 
 Siga estas etapas para instalar o FastAPI:
 
