@@ -3,7 +3,7 @@ from historias.historia_service import HistoriaService
 from historias.historia_schemas import HistoriaBase
 from usuarios.usuario_service import UsuarioService
 from usuarios.usuarios_scehmas import UsuarioBase
-from api_gpt.gerar_historias_schemas import PromptRequest
+from api_gpt.gerar_historias_schemas import PromptRequest, TrechoRequest
 from api_gpt.gerar_historias import gerar_historias, complementar_historia
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
@@ -37,9 +37,10 @@ async def atualiza_historia(historia_titulo: str, historia: dict = Body(...), db
     return historia_atualizada
 
 @app.patch("/historia/{historia_titulo}/adicionar_trecho")
-async def atualiza_historia_com_gepetas(historia_titulo: str, trecho: str, db: Session = Depends(get_db)):
+async def atualiza_historia_com_gepetas(historia_titulo: str, trecho_request: TrechoRequest, db: Session = Depends(get_db)):
     service = HistoriaService()
-    historia = service.obter_historia_por_titulo(historia_titulo)
+    trecho = trecho_request.trecho
+    historia = service.obter_historia_por_titulo(db, historia_titulo)
     conteudo_atualizado = complementar_historia(historia.conteudo, trecho)
     historia_atualizada = service.atualiza_historia(db, historia_titulo, conteudo_atualizado)
     if historia_atualizada is None:
