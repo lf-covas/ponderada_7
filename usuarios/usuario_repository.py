@@ -5,9 +5,9 @@ class UsuarioRepository():
     @staticmethod
     def verifica_email(db: Session, email: str):
         if db.query(Usuario).filter(Usuario.email == email).first() is not None:
-            return False
-        else:
             return True
+        else:
+            return False
 
     @staticmethod
     def criar_usuario(db: Session, usuario: Usuario):

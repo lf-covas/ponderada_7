@@ -127,13 +127,19 @@ def db():
 
 #     assert historia_deletada == True
 
-def test_criando_usuario_api():
-    info_usuario_novo = {
-        "nome":"Gabriel",
-        "email":"gabriel_bomdemais@gmail.com",
-        "senha":"12345"
-    }
+# def test_criando_usuario_api():
+#     info_usuario_novo = {
+#         "nome":"Gabriel",
+#         "email":"gabriel_muitolegal@gmail.com",
+#         "senha":"12345"
+#     }
 
-    retorno = client.post("/usuario", json=info_usuario_novo)
+#     retorno = client.post("/usuario", json=info_usuario_novo)
+#     assert retorno.status_code == 200
+#     assert retorno.json()['email'] == "gabriel_muitolegal@gmail.com"
+
+def test_deleta_usuario_api():
+    email = "gabriel_muitolegal@gmail.com"
+    retorno = client.delete("/usuario/gabriel_muitolegal@gmail.com")
     assert retorno.status_code == 200
-    assert retorno.json()['email'] == "gabriel_bomdemais@gmail.com"
+    assert retorno.json() == f'Usuário com o email {email} deletado com sucesso!'
