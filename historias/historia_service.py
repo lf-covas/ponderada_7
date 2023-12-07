@@ -25,6 +25,9 @@ class HistoriaService():
     def atualiza_historia(self, db: Session, historia_titulo: str, historia_atualizada: dict):
         return self.repository.atualizar_historia(db, historia_titulo, historia_atualizada)
     
+    def atualiza_historia_com_gptas(self, db: Session, historia_titulo: str, historia_atualizada: str):
+        return self.repository.atualizar_historia_com_gptas(db, historia_titulo, historia_atualizada)
+    
     def deletar_historia_por_titulo(self, db: Session, historia_titulo: str):
         resposta = self.repository.deletar_historia(db, historia_titulo)
         if resposta is True:

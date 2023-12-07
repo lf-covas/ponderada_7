@@ -30,6 +30,15 @@ class HistoriaRepository():
         return None
     
     @staticmethod
+    def atualizar_historia_com_gptas(db: Session, historia_titulo: str, historia_atualizada: str):
+        db_historia = db.query(Historia).filter(Historia.titulo == historia_titulo).first()
+        if db_historia:
+            db_historia.conteudo = historia_atualizada
+            db.commit()
+
+        return db_historia
+    
+    @staticmethod
     def deletar_historia(db: Session, historia_titulo: str):
         db_historia = db.query(Historia).filter(Historia.titulo == historia_titulo).first()
         if db_historia is not None:

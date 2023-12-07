@@ -3,7 +3,7 @@ from historias.historia_service import HistoriaService
 from historias.historia_schemas import HistoriaBase
 from usuarios.usuario_service import UsuarioService
 from usuarios.usuarios_scehmas import UsuarioBase
-from api_gpt.gerar_historias_schemas import PromptRequest, TrechoRequest
+from api_gpt.gerar_historias_schemas import PromptRequest, TrechoAtualizado
 from api_gpt.gerar_historias import gerar_historias, complementar_historia
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
@@ -37,12 +37,12 @@ async def atualiza_historia(historia_titulo: str, historia: dict = Body(...), db
     return historia_atualizada
 
 @app.patch("/historia/{historia_titulo}/adicionar_trecho")
-async def atualiza_historia_com_gepetas(historia_titulo: str, trecho_request: TrechoRequest, db: Session = Depends(get_db)):
+async def atualiza_historia_com_gepetas(historia_titulo: str, novo_trecho: TrechoAtualizado, db: Session = Depends(get_db)):
     service = HistoriaService()
-    trecho = trecho_request.trecho
+    trecho = novo_trecho.conteudo
     historia = service.obter_historia_por_titulo(db, historia_titulo)
     conteudo_atualizado = complementar_historia(historia.conteudo, trecho)
-    historia_atualizada = service.atualiza_historia(db, historia_titulo, conteudo_atualizado)
+    historia_atualizada = service.atualiza_historia_com_gptas(db, historia_titulo, conteudo_atualizado)
     if historia_atualizada is None:
         raise HTTPException(status_code=404, detail= f"História {historia_titulo} não encontrada")
     return historia_atualizada
